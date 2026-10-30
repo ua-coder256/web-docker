@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CimientosPro | Portal de Despliegue &amp; Virtual Hosts WEAP</title>
+  <link rel="stylesheet" href="www/css/styles.css">
+  <style>
+    .hub-header {
+      padding: 3rem 0 2rem;
+      text-align: center;
+      background: radial-gradient(circle at 50% 0%, #1e2632 0%, #0c0f13 70%);
+      border-bottom: 1px solid var(--border-steel);
+    }
+    .hub-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 107, 0, 0.15);
+      border: 1px solid rgba(255, 107, 0, 0.35);
+      color: var(--orange-safety);
+      padding: 0.35rem 0.9rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+    .portals-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    .portal-launch-card {
+      background: var(--bg-card);
+      border: 2px solid var(--border-steel);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    .portal-launch-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    .portal-launch-card.corp:hover {
+      border-color: var(--orange-safety);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.5), 0 0 25px rgba(255, 107, 0, 0.2);
+    }
+    .portal-launch-card.intra:hover {
+      border-color: var(--blue-tech-light);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.5), 0 0 25px rgba(56, 189, 248, 0.2);
+    }
+    .vhost-tag {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--blue-tech-light);
+      background: rgba(2, 132, 199, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+      display: inline-block;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+    .portal-preview-frame {
+      width: 100%;
+      height: 640px;
+      border: 1px solid var(--border-steel);
+      border-radius: var(--radius-md);
+      background: #000;
+      margin-top: 1.5rem;
+    }
+    .tab-bar {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .tab-btn {
+      padding: 0.75rem 1.75rem;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      background: var(--bg-card);
+      border: 1px solid var(--border-steel);
+      color: var(--concrete-light);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tab-btn.active {
+      background: var(--orange-safety);
+      color: #fff;
+      border-color: var(--orange-safety);
+      box-shadow: var(--shadow-orange);
+    }
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+    }
+    .spec-table th, .spec-table td {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border-steel);
+      text-align: left;
+    }
+    .spec-table th {
+      background: #11161d;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hub Header -->
+  <header class="hub-header">
+    <div class="container">
+      <div class="hub-badge">
+        🏗️ Módulo WEAP • Despliegue de Aplicaciones Web
+      </div>
+      <h1 style="font-size: 2.8rem; margin-bottom: 0.75rem;">
+        CIMIENTOS<span style="color: var(--orange-safety);">PRO</span>
+      </h1>
+      <p style="font-size: 1.15rem; max-width: 800px; margin: 0 auto; color: var(--concrete-mid);">
+        Arquitectura y Esquema de Sitios Web con Virtual Hosts Basados en Nombre para Consultoría de Ingeniería Civil.
+      </p>
+
+      <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+        <a href="https://CimientosGit.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size: 0.85rem;">
+          🐙 GitHub: CimientosGit.com
+        </a>
+        <a href="https://codigotecnico.org" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size: 0.85rem;">
+          📘 Normativa CTE
+        </a>
+        <a href="https://transportes.gob.es" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size: 0.85rem;">
+          🏗️ Código Estructural MITMA
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 3rem; padding-bottom: 5rem;">
+    
+    <!-- Tarjetas de Acceso a los Dos Portales Independientes -->
+    <div class="portals-grid">
+      
+      <!-- PORTAL 1: CORPORATIVO PÚBLICO -->
+      <div class="portal-launch-card corp">
+        <span class="vhost-tag">VHost: http://www.cimientospro.com</span>
+        <h2 style="font-size: 1.75rem; margin-bottom: 0.75rem; color: #fff;">1. Sitio Web Corporativo Público</h2>
+        <p style="color: var(--concrete-mid); font-size: 0.95rem; margin-bottom: 1.5rem;">
+          Landing page fluida de alto impacto visual orientada a clientes y promotores. Presenta los servicios de cálculo estructural, geotecnia y dirección de obras, con enlaces normativos y formulario de solicitud de presupuesto con adjunto de planos técnicos en PDF o Word.
+        </p>
+
+        <ul style="list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.9rem;">
+          <li>📍 <strong>Cabecera:</strong> Logotipo corporativo y menú de navegación rápida.</li>
+          <li>📍 <strong>Hero:</strong> Fotografía de gran obra civil en construcción con CTA "Solicitar presupuesto".</li>
+          <li>📍 <strong>Servicios:</strong> Tarjetas con planos técnicos, cascos y maquinaria de excavación.</li>
+          <li>📍 <strong>Formulario:</strong> Recogida obligatoria de datos y carga interactiva de planos (PDF/DOC).</li>
+          <li>📍 <strong>Interconexión:</strong> Enlace directo bidireccional hacia la Intranet privada.</li>
+        </ul>
+
+        <div style="margin-top: auto; display: flex; flex-direction: column; gap: 0.75rem;">
+          <a href="www/index.html" class="btn btn-primary" style="padding: 1rem; font-size: 1.05rem;">
+            Abrir Sitio Corporativo (Local / www/) &rarr;
+          </a>
+          <a href="http://www.cimientospro.com" target="_blank" class="btn btn-secondary" style="font-size: 0.85rem;">
+            Probar con Virtual Host: http://www.cimientospro.com
+          </a>
+        </div>
+      </div>
+
+      <!-- PORTAL 2: INTRANET PRIVADA -->
+      <div class="portal-launch-card intra">
+        <span class="vhost-tag" style="color: var(--orange-safety); border-color: rgba(255, 107, 0, 0.3); background: rgba(255, 107, 0, 0.1);">
+          VHost: http://intranet.cimientospro.com
+        </span>
+        <h2 style="font-size: 1.75rem; margin-bottom: 0.75rem; color: #fff;">2. Portal de la Intranet Privada</h2>
+        <p style="color: var(--concrete-mid); font-size: 0.95rem; margin-bottom: 1.5rem;">
+          Entorno restringido para el personal técnico y de ingeniería. Protegido por contraseña, da acceso al dashboard con tarjetas dedicadas para el gestor Docker (Portainer), IDE en la nube (VSCode) y copias de seguridad continuas (Duplicati).
+        </p>
+
+        <ul style="list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.9rem;">
+          <li>🔒 <strong>Login:</strong> Formulario seguro con usuario y contraseña (demo: <code>admin</code> / <code>cimientos2026</code>).</li>
+          <li>💻 <strong>Portainer:</strong> Gestión de contenedores en <code>portainer.cimientospro.com</code> (:9000).</li>
+          <li>⚡ <strong>VSCode:</strong> IDE remoto en <code>code.cimientospro.com</code> (:8443).</li>
+          <li>💾 <strong>Duplicati:</strong> Copias cifradas de planos en <code>backup.cimientospro.com</code> (:8200).</li>
+          <li>🔄 <strong>Retorno:</strong> Botón de regreso bidireccional a la web corporativa pública.</li>
+        </ul>
+
+        <div style="margin-top: auto; display: flex; flex-direction: column; gap: 0.75rem;">
+          <a href="intranet/index.html" class="btn btn-intranet" style="padding: 1rem; font-size: 1.05rem; background: var(--blue-tech); color: #fff;">
+            Abrir Intranet Privada (Local / intranet/) &rarr;
+          </a>
+          <a href="http://intranet.cimientospro.com" target="_blank" class="btn btn-secondary" style="font-size: 0.85rem;">
+            Probar con Virtual Host: http://intranet.cimientospro.com
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Visor Interactivo y Simulador en Vivo -->
+    <div style="background: var(--bg-card); border: 1px solid var(--border-steel); border-radius: var(--radius-xl); padding: 2rem; margin-bottom: 3rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h3 style="font-size: 1.4rem; color: #fff;">Simulador Interactivo de Sitios Web</h3>
+          <p style="font-size: 0.9rem; color: var(--concrete-mid); margin: 0;">
+            Previsualice cualquiera de los dos portales directamente en esta misma pantalla:
+          </p>
+        </div>
+        <div style="display: flex; gap: 0.5rem;">
+          <button type="button" class="tab-btn active" id="btn-tab-www" onclick="switchPreview('www')">
+            Web Pública (www)
+          </button>
+          <button type="button" class="tab-btn" id="btn-tab-intra" onclick="switchPreview('intra')">
+            Intranet (Dashboard)
+          </button>
+        </div>
+      </div>
+
+      <iframe src="www/index.html" id="preview-iframe" class="portal-preview-frame" title="Previsualizador de Portales CimientosPro"></iframe>
+    </div>
+
+    <!-- Especificación Técnica de la Arquitectura WEAP -->
+    <div style="background: var(--bg-card); border: 1px solid var(--border-steel); border-radius: var(--radius-xl); padding: 2.5rem;">
+      <h3 style="font-size: 1.4rem; color: #fff; margin-bottom: 1rem;">
+        ⚙️ Resumen de Planificación de Virtual Hosts (Apache / Nginx)
+      </h3>
+      <p style="font-size: 0.95rem; color: var(--concrete-mid);">
+        Se han creado los archivos de configuración listos para producción en la carpeta <code>vhosts/</code>:
+      </p>
+
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Nombre Virtual Host</th>
+            <th>Directorio DocumentRoot</th>
+            <th>Acceso / Función</th>
+            <th>Archivos Clave</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>www.cimientospro.com</code></td>
+            <td><code>web/www/</code></td>
+            <td>Público (Clientes / Oferta de Servicios)</td>
+            <td><code>index.html</code>, <code>css/styles.css</code>, <code>js/main.js</code></td>
+          </tr>
+          <tr>
+            <td><code>intranet.cimientospro.com</code></td>
+            <td><code>web/intranet/</code></td>
+            <td>Privado (Personal Técnico / VPN)</td>
+            <td><code>index.html</code>, <code>css/intranet.css</code>, <code>js/intranet.js</code></td>
+          </tr>
+          <tr>
+            <td><code>portainer.cimientospro.com</code></td>
+            <td>Proxy Inverso &rarr; <code>127.0.0.1:9000</code></td>
+            <td>Gestión de Contenedores Docker</td>
+            <td><code>vhosts/cimientospro-apache.conf</code></td>
+          </tr>
+          <tr>
+            <td><code>code.cimientospro.com</code></td>
+            <td>Proxy Inverso &rarr; <code>127.0.0.1:8443</code></td>
+            <td>IDE VSCode Server en la Nube</td>
+            <td><code>vhosts/cimientospro-apache.conf</code></td>
+          </tr>
+          <tr>
+            <td><code>backup.cimientospro.com</code></td>
+            <td>Proxy Inverso &rarr; <code>127.0.0.1:8200</code></td>
+            <td>Copias de Seguridad Duplicati AES-256</td>
+            <td><code>vhosts/cimientospro-apache.conf</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="vhosts/hosts-config.txt" target="_blank" class="btn btn-secondary" style="font-size: 0.85rem;">
+          📄 Ver archivo de configuración hosts-config.txt
+        </a>
+        <a href="vhosts/cimientospro-apache.conf" target="_blank" class="btn btn-secondary" style="font-size: 0.85rem;">
+          ⚙️ Ver configuración cimientospro-apache.conf
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer style="text-align: center; padding: 2rem; border-top: 1px solid var(--border-steel); color: var(--concrete-mid); font-size: 0.85rem;">
+    &copy; 2026 CimientosPro Consultoría &amp; Ingeniería Civil &bull; Práctica WEAP
+  </footer>
+
+  <script>
+    function switchPreview(type) {
+      const iframe = document.getElementById('preview-iframe');
+      const btnWww = document.getElementById('btn-tab-www');
+      const btnIntra = document.getElementById('btn-tab-intra');
+
+      if (type === 'www') {
+        iframe.src = 'www/index.html';
+        btnWww.classList.add('active');
+        btnIntra.classList.remove('active');
+      } else {
+        iframe.src = 'intranet/index.html';
+        btnIntra.classList.add('active');
+        btnWww.classList.remove('active');
+      }
+    }
+  </script>
+</body>
+</html>

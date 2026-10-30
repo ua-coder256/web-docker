@@ -1,0 +1,25 @@
+# ==============================================================================
+# CONFIGURACIÓN DEL ARCHIVO HOSTS PARA RESOLUCIÓN LOCAL DE DOMINIOS
+# ==============================================================================
+# Para probar los Virtual Hosts basados en nombre en tu equipo local:
+#
+# En Windows:
+#   Editar como Administrador el archivo:
+#   C:\Windows\System32\drivers\etc\hosts
+#
+# En Linux / Mac:
+#   sudo nano /etc/hosts
+#
+# Añadir las siguientes líneas al final del archivo:
+# ==============================================================================
+
+127.0.0.1   www.cimientospro.com
+127.0.0.1   cimientospro.com
+127.0.0.1   intranet.cimientospro.com
+127.0.0.1   portainer.cimientospro.com
+127.0.0.1   code.cimientospro.com
+127.0.0.1   backup.cimientospro.com
+
+# Una vez añadidas estas líneas, abrir en cualquier navegador:
+# http://www.cimientospro.com
+# http://intranet.cimientospro.com

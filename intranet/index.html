@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>CimientosPro | Intranet Técnica &amp; Panel de Herramientas</title>
+  
+  <link rel="stylesheet" href="css/intranet.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2312161c'/><path d='M30,50 A20,20 0 1,1 70,50 L70,80 L30,80 Z' fill='%23ff6b00'/><circle cx='50' cy='65' r='5' fill='%23fff'/></svg>">
+</head>
+<body>
+
+  <!-- Barra Superior de Red y Virtual Host (WEAP) -->
+  <aside class="intranet-top-bar" aria-label="Estado de Red Interna">
+    <div class="container">
+      <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+        <span class="badge-network">
+          <span class="dot-status" aria-hidden="true"></span>
+          Red Interna LAN: 192.168.1.100 (VPN Activa)
+        </span>
+        <span class="badge-vhost">
+          VHost: <strong>intranet.cimientospro.com</strong> (HTTP :80)
+        </span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+        <span>Hora Servidor: <strong id="server-live-time">--:--:--</strong></span>
+        <a href="https://CimientosGit.com" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 0.35rem; color: var(--concrete-mid);">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          CimientosGit.com
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Cabecera de la Intranet -->
+  <header class="intranet-header">
+    <div class="container intranet-nav">
+      <div class="intranet-brand">
+        <svg width="38" height="38" viewBox="0 0 100 100" fill="none">
+          <polygon points="50,6 94,30 94,72 50,96 6,72 6,30" fill="#181d24" stroke="#ff6b00" stroke-width="4"/>
+          <path d="M22 34 L78 34 L78 44 L56 44 L56 78 L44 78 L44 44 L22 44 Z" fill="#0284c7"/>
+          <circle cx="50" cy="54" r="5" fill="#ff6b00"/>
+        </svg>
+        <div class="intranet-brand-text">
+          <h1>CIMIENTOS<span>PRO</span></h1>
+          <small>Portal Técnico Privado &bull; Intranet Corporativa</small>
+        </div>
+      </div>
+
+      <div class="intranet-actions">
+        <!-- Enlace de Retorno Bidireccional hacia la Web Pública -->
+        <a href="http://www.cimientospro.com" class="btn-intranet btn-outline-back" id="btn-return-public" title="Volver al portal público corporativo">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Volver a www.cimientospro.com
+        </a>
+
+        <!-- Botón de Cerrar Sesión (Visible solo en dashboard) -->
+        <button type="button" class="btn-intranet btn-logout" id="btn-logout" style="display: none;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+            <polyline points="16 17 21 12 16 7"></polyline>
+            <line x1="21" y1="12" x2="9" y2="12"></line>
+          </svg>
+          Cerrar Sesión
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       SECCIÓN 1: PANTALLA DE LOGIN (PROTEGIDO POR CONTRASEÑA)
+       ========================================================================= -->
+  <main>
+    <section class="login-view-container" id="login-view">
+      <div class="login-card">
+        <div class="login-header">
+          <div class="login-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            Acceso Técnico Restringido
+          </div>
+          <h2 class="login-title">Autenticación de Personal</h2>
+          <p class="login-desc">
+            Portal interno exclusivo para calculistas, ingenieros de campo y administración de servidores.
+          </p>
+        </div>
+
+        <!-- Alerta de Error de Autenticación -->
+        <div class="login-error-msg" id="login-error" role="alert"></div>
+
+        <!-- Formulario de Acceso con Usuario y Contraseña -->
+        <form id="form-login-intranet" autocomplete="on">
+          <div class="form-group-login">
+            <label for="login-user" class="login-label">Usuario Técnico / ID Colegiado</label>
+            <input type="text" id="login-user" name="username" class="login-input" placeholder="ej. admin o tecnico@cimientospro.com" required autofocus>
+          </div>
+
+          <div class="form-group-login">
+            <label for="login-pass" class="login-label">Contraseña de Acceso</label>
+            <input type="password" id="login-pass" name="password" class="login-input" placeholder="••••••••••••" required>
+          </div>
+
+          <div class="form-group-login">
+            <label for="login-dept" class="login-label">Departamento Técnico</label>
+            <select id="login-dept" name="department" class="login-input" style="background: #0a0d11; color: #fff;">
+              <option value="estructuras">Área de Cálculo de Estructuras (MEF/BIM)</option>
+              <option value="geotecnia">Área de Geotecnia y Sondeos</option>
+              <option value="direccion">Dirección Facultativa de Obras</option>
+              <option value="sistemas">Sistemas &amp; DevOps (WEAP)</option>
+            </select>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 0.5rem; font-size: 0.82rem;">
+            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; color: var(--concrete-mid);">
+              <input type="checkbox" id="remember-session" style="accent-color: var(--orange-safety);">
+              Recordar sesión en este equipo
+            </label>
+            <span style="color: var(--blue-tech-light);">VPN CimientosPro</span>
+          </div>
+
+          <button type="submit" class="btn-login-submit">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+              <polyline points="10 17 15 12 10 7"></polyline>
+              <line x1="15" y1="12" x2="3" y2="12"></line>
+            </svg>
+            Acceder al Panel de Aplicaciones
+          </button>
+        </form>
+
+        <div class="login-notice-box">
+          <strong style="color: #fff; display: block; margin-bottom: 0.25rem;">Credenciales para Evaluación WEAP:</strong>
+          Usuario: <code>admin</code> &nbsp;|&nbsp; Contraseña: <code>cimientos2026</code>
+        </div>
+
+        <div class="login-back-link">
+          <a href="http://www.cimientospro.com">
+            &larr; Volver a la Web Corporativa Pública (www.cimientospro.com)
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         SECCIÓN 2: PANEL DE APLICACIONES (DASHBOARD) - TARJETAS DEDICADAS
+         ========================================================================= -->
+    <section class="dashboard-view-container" id="dashboard-view">
+      <div class="container">
+        
+        <!-- Tarjeta de Bienvenida y Estado del Usuario -->
+        <div class="dashboard-hero">
+          <div class="dashboard-user-info">
+            <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.4rem;">
+              <span class="badge-network" style="font-size: 0.75rem;">Sesión Autenticada</span>
+              <span style="font-size: 0.82rem; color: var(--concrete-mid);">Nodo Local: SRV-CALC-01</span>
+            </div>
+            <h2>Bienvenido, <span id="current-username" style="color: var(--blue-tech-light);">Ing. Carlos Mendoza</span></h2>
+            <p>
+              Estación de trabajo técnica conectada al cluster de servidores de ingeniería. Seleccione una herramienta para iniciar sesión en su subdominio respectivo.
+            </p>
+          </div>
+
+          <div class="dashboard-stats-strip">
+            <div class="stat-box">
+              <span class="stat-value" style="color: #10b981;">3 / 3</span>
+              <span class="stat-label">Herramientas Online</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-value" style="color: var(--blue-tech-light);">99.98%</span>
+              <span class="stat-label">Uptime Servidor</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-value" style="color: var(--orange-safety);">10 Gbps</span>
+              <span class="stat-label">Enlace Fibra LAN</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TARJETAS DEDICADAS PARA CADA HERRAMIENTA (PORTAINER, VSCODE, DUPLICATI) -->
+        <div class="section-heading-intranet">
+          <div>
+            <h3>Herramientas de Servidor y Entornos de Desarrollo</h3>
+            <p style="font-size: 0.88rem; color: var(--concrete-mid);">
+              Accesos directos hacia los subdominios de infraestructura dedicados:
+            </p>
+          </div>
+          <button type="button" class="btn-intranet btn-outline-back" id="btn-run-ping" style="font-size: 0.8rem; padding: 0.45rem 0.85rem;">
+            🔄 Comprobar Conexión Subdominios
+          </button>
+        </div>
+
+        <div class="tools-grid">
+          
+          <!-- HERRAMIENTA 1: PORTAINER -->
+          <article class="tool-card portainer" id="card-portainer">
+            <div class="tool-top-row">
+              <div class="tool-icon-wrapper">
+                <!-- Icono Docker / Portainer -->
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 12.5c-.8.4-1.7.5-2.6.2-.6-.2-1.2-.6-1.6-1.1-.9 1.1-2.4 1.7-3.8 1.4-1.3-.3-2.3-1.4-2.5-2.7-.9.5-2 .5-2.9 0-.9 1.3-2.5 1.9-4 1.4C3.8 11.4 3 10.5 3 9.4c0-2.4 1.9-4.4 4.3-4.4h.7c.5-1.8 2.2-3 4-3 1.6 0 3 1 3.7 2.4.6-.2 1.3-.4 2-.4 2.8 0 5 2.2 5 5 0 1.2-.4 2.4-1.2 3.3.2.1.3.2.5.2z"></path>
+                  <rect x="5" y="14" width="4" height="3" rx="0.5"></rect>
+                  <rect x="10" y="14" width="4" height="3" rx="0.5"></rect>
+                  <rect x="15" y="14" width="4" height="3" rx="0.5"></rect>
+                  <rect x="10" y="18" width="4" height="3" rx="0.5"></rect>
+                </svg>
+              </div>
+              <span class="tool-status-pill ping-status-cell">
+                <span class="dot-status"></span> Online (:9000)
+              </span>
+            </div>
+
+            <h4 class="tool-name">Portainer</h4>
+            <span class="tool-subdomain">http://portainer.cimientospro.com</span>
+
+            <p class="tool-desc">
+              Plataforma de gestión de contenedores Docker y microservicios. Permite monitorizar el estado de los contenedores de cálculo estructural, bases de datos PostgreSQL y servidores web.
+            </p>
+
+            <ul class="tool-details-list">
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--blue-tech-light);"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Gestión de stacks y contenedores en tiempo real
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--blue-tech-light);"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Logs de cálculo matricial y simulación
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--blue-tech-light);"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Control de red interna y volúmenes persistentes
+              </li>
+            </ul>
+
+            <a href="http://portainer.cimientospro.com" target="_blank" rel="noopener noreferrer" class="btn-open-tool" id="btn-open-portainer">
+              Abrir Portainer Dashboard
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+          </article>
+
+          <!-- HERRAMIENTA 2: VSCODE (CODE-SERVER) -->
+          <article class="tool-card vscode" id="card-vscode">
+            <div class="tool-top-row">
+              <div class="tool-icon-wrapper">
+                <!-- Icono Code Server / VS Code -->
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                  <line x1="14" y1="4" x2="10" y2="20"></line>
+                </svg>
+              </div>
+              <span class="tool-status-pill ping-status-cell">
+                <span class="dot-status"></span> Online (:8443)
+              </span>
+            </div>
+
+            <h4 class="tool-name">VSCode (code-server)</h4>
+            <span class="tool-subdomain">http://code.cimientospro.com</span>
+
+            <p class="tool-desc">
+              Entorno de desarrollo integrado (IDE) remoto ejecutable en navegador. Diseñado para desarrollo de scripts en Python (NumPy, SciPy), automatización de cálculos y modelado de pórticos.
+            </p>
+
+            <ul class="tool-details-list">
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: #60a5fa;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Terminal bash integrada en servidor Linux
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: #60a5fa;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Entornos Python, LaTeX para memorias y Fortran
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: #60a5fa;"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Sincronización con repositorio CimientosGit
+              </li>
+            </ul>
+
+            <a href="http://code.cimientospro.com" target="_blank" rel="noopener noreferrer" class="btn-open-tool" style="color: #60a5fa; border-color: rgba(96, 165, 250, 0.35); background: rgba(59, 130, 246, 0.12);" id="btn-open-vscode">
+              Lanzar Sesión de VSCode
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+          </article>
+
+          <!-- HERRAMIENTA 3: DUPLICATI -->
+          <article class="tool-card duplicati" id="card-duplicati">
+            <div class="tool-top-row">
+              <div class="tool-icon-wrapper">
+                <!-- Icono Duplicati / Backup -->
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                  <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                  <polyline points="7 3 7 8 15 8"></polyline>
+                </svg>
+              </div>
+              <span class="tool-status-pill ping-status-cell">
+                <span class="dot-status"></span> Online (:8200)
+              </span>
+            </div>
+
+            <h4 class="tool-name">Duplicati</h4>
+            <span class="tool-subdomain">http://backup.cimientospro.com</span>
+
+            <p class="tool-desc">
+              Sistema de copias de seguridad continuas y cifradas en estándar militar AES-256. Respaldo incremental automático de bases de datos, planos CAD, memorias y expedientes de obra.
+            </p>
+
+            <ul class="tool-details-list">
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--green-online);"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Última copia incremental: Hoy a las 04:00 AM (OK)
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--green-online);"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Cifrado simétrico AES-256 en reposo
+              </li>
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--green-online);"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Restauración instantánea de proyectos visados
+              </li>
+            </ul>
+
+            <a href="http://backup.cimientospro.com" target="_blank" rel="noopener noreferrer" class="btn-open-tool" style="color: var(--green-online); border-color: rgba(16, 185, 129, 0.35); background: rgba(16, 185, 129, 0.12);" id="btn-open-duplicati">
+              Gestionar Copias en Duplicati
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+          </article>
+
+        </div>
+
+        <!-- CONSOLA DE DIAGNÓSTICO Y ESQUEMA DE VIRTUAL HOSTS (WEAP) -->
+        <div class="diagnostic-panel">
+          <div class="diagnostic-header">
+            <div>
+              <strong style="color: #fff; font-size: 1rem;">Esquema de Resolución de Nombres y Subdominios (Virtual Hosts WEAP)</strong>
+              <div style="font-size: 0.8rem; color: var(--concrete-mid); margin-top: 0.2rem;">
+                Mapeo de servidores configurado en el servidor web Apache/Nginx para CimientosPro:
+              </div>
+            </div>
+            <span style="color: var(--green-online); font-size: 0.8rem;">● DNS Local Activo</span>
+          </div>
+
+          <table class="diagnostic-table">
+            <thead>
+              <tr>
+                <th>Servicio / Entorno</th>
+                <th>Subdominio FQDN</th>
+                <th>Puerto Interno</th>
+                <th>Acceso Directo</th>
+                <th>Estado Conexión</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Web Corporativa</strong></td>
+                <td><code>www.cimientospro.com</code></td>
+                <td>80 (HTTP)</td>
+                <td><a href="http://www.cimientospro.com" target="_blank">Abrir Sitio &rarr;</a></td>
+                <td class="ping-status-cell"><span style="color: #10b981;">🟢 HTTP 200 OK (8 ms)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Intranet Privada</strong></td>
+                <td><code>intranet.cimientospro.com</code></td>
+                <td>80 (HTTP)</td>
+                <td><a href="http://intranet.cimientospro.com">Portal Actual</a></td>
+                <td class="ping-status-cell"><span style="color: #10b981;">🟢 Conectado LAN</span></td>
+              </tr>
+              <tr>
+                <td><strong>Portainer (Docker)</strong></td>
+                <td><code>portainer.cimientospro.com</code></td>
+                <td>9000 (HTTP)</td>
+                <td><a href="http://portainer.cimientospro.com" target="_blank">Abrir Portainer &rarr;</a></td>
+                <td class="ping-status-cell"><span style="color: #10b981;">🟢 Activo (:9000)</span></td>
+              </tr>
+              <tr>
+                <td><strong>VSCode Server</strong></td>
+                <td><code>code.cimientospro.com</code></td>
+                <td>8443 (HTTP)</td>
+                <td><a href="http://code.cimientospro.com" target="_blank">Abrir Code &rarr;</a></td>
+                <td class="ping-status-cell"><span style="color: #10b981;">🟢 Activo (:8443)</span></td>
+              </tr>
+              <tr>
+                <td><strong>Duplicati Backup</strong></td>
+                <td><code>backup.cimientospro.com</code></td>
+                <td>8200 (HTTP)</td>
+                <td><a href="http://backup.cimientospro.com" target="_blank">Abrir Backup &rarr;</a></td>
+                <td class="ping-status-cell"><span style="color: #10b981;">🟢 Activo (:8200)</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- ENLACES TÉCNICOS RÁPIDOS Y NORMATIVA DE CONSTRUCCIÓN -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border-steel); border-radius: var(--radius-lg); padding: 1.75rem;">
+          <h4 style="margin-bottom: 1rem; color: #fff;">Documentación Técnica &amp; Repositorio del Proyecto</h4>
+          <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+            <a href="https://codigotecnico.org" target="_blank" rel="noopener noreferrer" class="btn-intranet btn-outline-back" style="font-size: 0.85rem;">
+              📘 CTE - Código Técnico de la Edificación
+            </a>
+            <a href="https://transportes.gob.es" target="_blank" rel="noopener noreferrer" class="btn-intranet btn-outline-back" style="font-size: 0.85rem;">
+              🏗️ Código Estructural de Obras Civiles (MITMA)
+            </a>
+            <a href="https://CimientosGit.com" target="_blank" rel="noopener noreferrer" class="btn-intranet btn-outline-back" style="font-size: 0.85rem; color: var(--orange-safety); border-color: rgba(255, 107, 0, 0.4);">
+              🐙 Repositorio Oficial en GitHub: CimientosGit.com
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Pie de la Intranet -->
+  <footer class="intranet-footer">
+    <div class="container">
+      <div>
+        &copy; 2026 CimientosPro Consultoría &amp; Ingeniería Civil S.L. &bull; Intranet Corporativa Confidencial
+      </div>
+      <div style="display: flex; gap: 1.25rem;">
+        <a href="http://www.cimientospro.com" style="color: var(--blue-tech-light);">Ir a Web Pública</a>
+        <a href="https://CimientosGit.com" target="_blank" rel="noopener noreferrer">GitHub Proyecto</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/intranet.js"></script>
+</body>
+</html>

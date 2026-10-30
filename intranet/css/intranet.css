@@ -1,0 +1,698 @@
+/* ==========================================================================
+   CIMIENTOSPRO - INTRANET TÉCNICA PRIVADA
+   (Sitio Interno: intranet.cimientospro.com)
+   Paleta: Asfalto Oscuro (#0a0d11, #13171e), Azul Técnico (#0284c7, #38bdf8),
+           Naranja Seguridad (#ff6b00) y Verde Estado (#10b981)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --bg-deep: #080a0d;
+  --bg-dark: #0e1217;
+  --bg-card: #141920;
+  --bg-card-hover: #1b222c;
+  --bg-surface: #222b37;
+  
+  --blue-tech: #0284c7;
+  --blue-tech-light: #38bdf8;
+  --blue-glow: rgba(56, 189, 248, 0.2);
+  
+  --orange-safety: #ff6b00;
+  --orange-safety-hover: #ea580c;
+  --orange-glow: rgba(255, 107, 0, 0.25);
+  
+  --green-online: #10b981;
+  --green-glow: rgba(16, 185, 129, 0.25);
+  
+  --concrete-light: #e2e8f0;
+  --concrete-mid: #94a3b8;
+  --concrete-dark: #475569;
+  --border-steel: #232c37;
+  --border-active: #3b4756;
+  
+  --font-main: 'Inter', sans-serif;
+  --font-heading: 'Barlow', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  
+  --shadow-sm: 0 2px 6px rgba(0,0,0,0.3);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.4);
+  --shadow-lg: 0 16px 40px rgba(0,0,0,0.6);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-deep);
+  color: var(--concrete-light);
+  line-height: 1.5;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Trama sutil de circuito / cuadrícula técnica */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+a {
+  color: var(--blue-tech-light);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--orange-safety);
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   BARRA SUPERIOR DE INTRANET & ESTADO DE RED
+   ========================================================================== */
+.intranet-top-bar {
+  background: #06080b;
+  border-bottom: 1px solid var(--border-steel);
+  padding: 0.45rem 0;
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  color: var(--concrete-mid);
+}
+
+.intranet-top-bar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.badge-network {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(16, 185, 129, 0.12);
+  color: var(--green-online);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+}
+
+.badge-vhost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(2, 132, 199, 0.12);
+  color: var(--blue-tech-light);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-sm);
+}
+
+.dot-status {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 8px currentColor;
+}
+
+/* ==========================================================================
+   CABECERA DEL DASHBOARD DE LA INTRANET
+   ========================================================================== */
+.intranet-header {
+  background: rgba(14, 18, 23, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-steel);
+  padding: 0.85rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.intranet-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.intranet-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.intranet-brand-text h1 {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
+
+.intranet-brand-text h1 span {
+  color: var(--orange-safety);
+}
+
+.intranet-brand-text small {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--blue-tech-light);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.intranet-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-intranet {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.15rem;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btn-outline-back {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-steel);
+  color: #fff;
+}
+
+.btn-outline-back:hover {
+  background: rgba(2, 132, 199, 0.15);
+  border-color: var(--blue-tech-light);
+  color: var(--blue-tech-light);
+}
+
+.btn-logout {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+}
+
+.btn-logout:hover {
+  background: #ef4444;
+  color: #fff;
+}
+
+/* ==========================================================================
+   VISTA 1: PANTALLA DE LOGIN (PROTECCIÓN POR CONTRASEÑA)
+   ========================================================================== */
+.login-view-container {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1rem;
+}
+
+.login-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-steel);
+  border-radius: var(--radius-xl);
+  max-width: 460px;
+  width: 100%;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+}
+
+.login-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--orange-safety), var(--blue-tech-light), transparent);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  color: var(--orange-safety);
+  background: rgba(255, 107, 0, 0.1);
+  border: 1px solid rgba(255, 107, 0, 0.25);
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.login-title {
+  font-size: 1.6rem;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.35rem;
+}
+
+.login-desc {
+  font-size: 0.88rem;
+  color: var(--concrete-mid);
+}
+
+.form-group-login {
+  margin-bottom: 1.25rem;
+}
+
+.login-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin-bottom: 0.4rem;
+}
+
+.login-input {
+  width: 100%;
+  background: #0a0d11;
+  border: 1px solid var(--border-steel);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  color: #fff;
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.login-input:focus {
+  border-color: var(--blue-tech-light);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+}
+
+.btn-login-submit {
+  width: 100%;
+  background: linear-gradient(135deg, var(--orange-safety) 0%, #d95800 100%);
+  color: #fff;
+  padding: 0.85rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(255, 107, 0, 0.3);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.btn-login-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 107, 0, 0.45);
+}
+
+.login-notice-box {
+  background: rgba(2, 132, 199, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 0.9rem;
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--concrete-mid);
+}
+
+.login-notice-box code {
+  color: var(--blue-tech-light);
+  font-family: var(--font-mono);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+}
+
+.login-back-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.88rem;
+}
+
+.login-back-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--concrete-mid);
+}
+
+.login-back-link a:hover {
+  color: #fff;
+}
+
+/* Mensaje de error de login */
+.login-error-msg {
+  display: none;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid #ef4444;
+  color: #fca5a5;
+  padding: 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+/* ==========================================================================
+   VISTA 2: PANEL DE APLICACIONES (DASHBOARD)
+   ========================================================================== */
+.dashboard-view-container {
+  display: none; /* Se activa tras login */
+  padding: 2.5rem 0 5rem;
+}
+
+.dashboard-hero {
+  background: linear-gradient(135deg, #141a22 0%, #0d1217 100%);
+  border: 1px solid var(--border-steel);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.dashboard-user-info h2 {
+  font-size: 1.7rem;
+  margin-bottom: 0.35rem;
+}
+
+.dashboard-user-info p {
+  color: var(--concrete-mid);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.dashboard-stats-strip {
+  display: flex;
+  gap: 2rem;
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--concrete-mid);
+  letter-spacing: 0.05em;
+}
+
+/* Sección de Tarjetas de Herramientas (Portainer, VSCode, Duplicati) */
+.section-heading-intranet {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-heading-intranet h3 {
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  margin-bottom: 3rem;
+}
+
+.tool-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-steel);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--blue-tech-light);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), 0 0 25px rgba(2, 132, 199, 0.15);
+}
+
+.tool-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+
+.tool-icon-wrapper {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.tool-card.portainer .tool-icon-wrapper {
+  background: rgba(2, 132, 199, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: var(--blue-tech-light);
+}
+
+.tool-card.vscode .tool-icon-wrapper {
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  color: #60a5fa;
+}
+
+.tool-card.duplicati .tool-icon-wrapper {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: var(--green-online);
+}
+
+.tool-status-pill {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--green-online);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.tool-name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.tool-subdomain {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--blue-tech-light);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.tool-desc {
+  font-size: 0.9rem;
+  color: var(--concrete-mid);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.tool-details-list {
+  list-style: none;
+  margin-top: auto;
+  margin-bottom: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: #cbd5e1;
+}
+
+.tool-details-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-open-tool {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.85rem;
+  background: rgba(2, 132, 199, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: var(--radius-sm);
+  color: var(--blue-tech-light);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.btn-open-tool:hover {
+  background: var(--blue-tech);
+  color: #fff;
+  border-color: var(--blue-tech);
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.35);
+  transform: translateY(-2px);
+}
+
+/* Consola de Diagnóstico & Ping de Subdominios (WEAP) */
+.diagnostic-panel {
+  background: #090c10;
+  border: 1px solid var(--border-steel);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  margin-bottom: 3rem;
+  font-family: var(--font-mono);
+}
+
+.diagnostic-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-steel);
+}
+
+.diagnostic-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.diagnostic-table th {
+  text-align: left;
+  color: var(--concrete-mid);
+  padding: 0.5rem;
+  font-weight: 600;
+}
+
+.diagnostic-table td {
+  padding: 0.65rem 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  color: #cbd5e1;
+}
+
+/* Pie de la Intranet */
+.intranet-footer {
+  background: #06080a;
+  border-top: 1px solid var(--border-steel);
+  padding: 2rem 0;
+  font-size: 0.85rem;
+  color: var(--concrete-mid);
+  text-align: center;
+}
+
+.intranet-footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-stats-strip {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .intranet-nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .intranet-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

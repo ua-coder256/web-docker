@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CimientosPro - Consultoría técnica y de ingeniería civil especializada en cálculo de estructuras, estudios geotécnicos y dirección de obras civiles. Cumplimiento CTE y Código Estructural.">
+  <meta name="keywords" content="ingenieria civil, calculo de estructuras, estudios geotecnicos, direccion de obra, cimentaciones, CTE, codigo estructural, cimientospro">
+  <meta name="author" content="CimientosPro S.L.">
+  <title>CimientosPro | Consultoría de Ingeniería Civil & Cálculo Estructural</title>
+  
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><polygon points='50,5 95,30 95,70 50,95 5,70 5,30' fill='%2312161c' stroke='%23ff6b00' stroke-width='6'/><path d='M30,35 L70,35 L70,45 L45,45 L45,55 L65,55 L65,65 L30,65 Z' fill='%2338bdf8'/></svg>">
+</head>
+<body>
+
+  <!-- Barra de Infraestructura Técnica y Virtual Host (WEAP) -->
+  <aside class="server-status-bar" aria-label="Información de Servidor Web">
+    <div class="container">
+      <div class="status-left">
+        <span class="vhost-indicator">
+          <span class="status-dot" aria-hidden="true"></span>
+          VHost: <strong>www.cimientospro.com</strong> (HTTP :80)
+        </span>
+        <span style="font-size: 0.8rem; opacity: 0.8;">Servidor de Producción • Despliegue Apache 2.4 / Nginx</span>
+      </div>
+      <div class="status-right">
+        <a href="https://CimientosGit.com" target="_blank" rel="noopener noreferrer" class="repo-link" title="Ver código en GitHub">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          Repositorio Git: <strong>CimientosGit.com</strong>
+        </a>
+        <a href="http://intranet.cimientospro.com" class="repo-link" style="color: var(--blue-tech-light);" title="Acceso al portal privado">
+          🔒 Red Interna
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Cabecera Corporativa con Logotipo y Menú de Navegación Rápida -->
+  <header class="site-header" id="header">
+    <div class="container nav-container">
+      <a href="#inicio" class="brand-logo" aria-label="CimientosPro Inicio">
+        <!-- Logotipo Isométrico de Ingeniería Civil en SVG -->
+        <svg class="logo-icon-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="50,6 94,30 94,72 50,96 6,72 6,30" fill="#181d24" stroke="#ff6b00" stroke-width="4"/>
+          <!-- Viga de cimentación y pilar de hormigón -->
+          <path d="M22 34 L78 34 L78 44 L56 44 L56 78 L44 78 L44 44 L22 44 Z" fill="#0284c7"/>
+          <path d="M50 6 L94 30 L50 54 L6 30 Z" fill="#242c37" opacity="0.6"/>
+          <circle cx="50" cy="54" r="5" fill="#ff6b00"/>
+        </svg>
+        <div class="brand-text">
+          <span class="brand-title">CIMIENTOS<span>PRO</span></span>
+          <span class="brand-tagline">Consultoría &amp; Ingeniería Civil</span>
+        </div>
+      </a>
+
+      <!-- Menú de Navegación Rápida -->
+      <nav class="main-nav" aria-label="Menú principal">
+        <a href="#inicio" class="nav-link">Inicio</a>
+        <a href="#servicios" class="nav-link">Servicios Técnicos</a>
+        <a href="#proyectos" class="nav-link">Proyectos</a>
+        <a href="#normativa" class="nav-link">Normativa Técnica</a>
+        <a href="#contacto" class="nav-link">Contacto &amp; Presupuestos</a>
+      </nav>
+
+      <!-- Botones de Acción de Cabecera -->
+      <div class="header-actions">
+        <!-- Enlace interconexión bidireccional a la Intranet -->
+        <a href="http://intranet.cimientospro.com" class="btn btn-intranet" id="btn-header-intranet" title="Acceso privado para personal técnico">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          Intranet
+        </a>
+
+        <!-- Botón de llamada a la acción para presupuestos -->
+        <a href="#contacto" class="btn btn-primary" id="btn-header-presupuesto">
+          Solicitar Presupuesto
+        </a>
+
+        <button class="menu-toggle" aria-label="Abrir menú de navegación">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- BLOQUE DE BIENVENIDA (HERO SECTION) -->
+  <main>
+    <section class="hero-section" id="inicio">
+      <div class="hero-background-wrapper">
+        <img src="assets/hero_civil_engineering.jpg" alt="Gran obra de infraestructura civil en construcción con viaductos y grúas" class="hero-bg-img" loading="eager">
+        <div class="hero-overlay"></div>
+      </div>
+
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            Ingeniería de Máxima Fiabilidad Estructural
+          </div>
+
+          <h1 class="hero-title">
+            Solidez, Precisión y Vanguardia en <span class="highlight-orange">Obra Civil</span> e <span class="highlight-blue">Infraestructura</span>
+          </h1>
+
+          <p class="hero-description">
+            Consultoría técnica de ingeniería civil especializada en el cálculo estructural no lineal, campañas geotécnicas integrales y dirección facultativa de infraestructuras complejas bajo las normativas CTE y Código Estructural.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#contacto" class="btn btn-primary" style="padding: 0.9rem 2rem; font-size: 1.05rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              Solicitar Presupuesto Técnico
+            </a>
+
+            <a href="#servicios" class="btn btn-secondary" style="padding: 0.9rem 1.6rem; font-size: 1.05rem;">
+              Explorar Especialidades
+            </a>
+
+            <!-- Interconexión hacia la Intranet -->
+            <a href="http://intranet.cimientospro.com" class="btn btn-intranet" style="padding: 0.9rem 1.4rem;">
+              Portal Interno Personal
+            </a>
+          </div>
+
+          <!-- Métricas Técnicas Corporativas -->
+          <div class="hero-metrics">
+            <div class="metric-item">
+              <div class="metric-number">+280<span>+</span></div>
+              <span class="metric-label">Proyectos Estructurales</span>
+            </div>
+            <div class="metric-item">
+              <div class="metric-number">100<span>%</span></div>
+              <span class="metric-label">Cumplimiento CTE / CE</span>
+            </div>
+            <div class="metric-item">
+              <div class="metric-number">25<span>años</span></div>
+              <span class="metric-label">Experiencia en Sector</span>
+            </div>
+            <div class="metric-item">
+              <div class="metric-number">0<span>inc.</span></div>
+              <span class="metric-label">Seguridad Garantizada</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BANNER DE INTERCONEXIÓN DE LA INFRAESTRUCTURA (WEAP) -->
+    <div class="container" style="margin-top: -1.5rem; position: relative; z-index: 10;">
+      <div class="interconnect-banner">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <div style="background: rgba(2, 132, 199, 0.2); border-radius: 50%; padding: 0.6rem; color: var(--blue-tech-light);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+              <line x1="6" y1="6" x2="6.01" y2="6"></line>
+              <line x1="6" y1="18" x2="6.01" y2="18"></line>
+            </svg>
+          </div>
+          <div>
+            <strong style="color: #fff; font-size: 0.95rem; display: block;">Infraestructura Dividida en Virtual Hosts Independientes</strong>
+            <span style="font-size: 0.82rem; color: var(--concrete-mid);">
+              Web Pública: <code style="color: var(--blue-tech-light);">www.cimientospro.com</code> &nbsp;|&nbsp; 
+              Intranet Técnica: <code style="color: var(--orange-safety);">intranet.cimientospro.com</code>
+            </span>
+          </div>
+        </div>
+        <a href="http://intranet.cimientospro.com" class="btn btn-intranet" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
+          Ir a Intranet Privada &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- SECCIÓN DE SERVICIOS TÉCNICOS -->
+    <section class="section section-dark" id="servicios">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Nuestras Especialidades</span>
+          <h2 class="section-title">Servicios Técnicos de Consultoría</h2>
+          <p class="section-subtitle">
+            Aportamos soluciones de ingeniería con rigor analítico, software de modelado de elementos finitos y certificación en cada fase de la obra civil.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          
+          <!-- Servicio 1: Cálculo de Estructuras -->
+          <article class="service-card" id="servicio-estructuras">
+            <div class="service-image-wrapper">
+              <img src="assets/service_estructuras.jpg" alt="Planos técnicos y análisis estructural de elementos finitos en tablet" class="service-img" loading="lazy">
+              <span class="service-badge">Código Estructural • BIM</span>
+            </div>
+            <div class="service-body">
+              <div class="service-icon-heading">
+                <!-- Icono de Planos Técnicos y Estructuras -->
+                <div class="service-icon-box">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                    <line x1="8" y1="2" x2="8" y2="18"></line>
+                    <line x1="16" y1="6" x2="16" y2="22"></line>
+                  </svg>
+                </div>
+                <h3 class="service-title">Cálculo de Estructuras</h3>
+              </div>
+
+              <p class="service-desc">
+                Modelado tridimensional no lineal, cálculo dinámico sísmico y dimensionamiento de estructuras de hormigón armado, pretensado, metálicas y mixtas según el Código Estructural y Eurocódigos.
+              </p>
+
+              <ul class="service-features">
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Análisis por elementos finitos (FEA) de tableros y pilas.
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Puentes, pasarelas, pasos inferiores y naves industriales.
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Memorias de cálculo visadas y planos constructivos.
+                </li>
+              </ul>
+
+              <a href="#contacto" class="service-action-link" onclick="preselectService('calculo')">
+                Solicitar Cálculo Estructural &rarr;
+              </a>
+            </div>
+          </article>
+
+          <!-- Servicio 2: Estudios Geotécnicos -->
+          <article class="service-card" id="servicio-geotecnia">
+            <div class="service-image-wrapper">
+              <img src="assets/service_geotecnia.jpg" alt="Casco de seguridad de obra, testigos de sondeos geotécnicos y equipo de perforación" class="service-img" loading="lazy">
+              <span class="service-badge">CTE DB-SE-C • Sondeos</span>
+            </div>
+            <div class="service-body">
+              <div class="service-icon-heading">
+                <!-- Icono de Casco de Seguridad y Geotecnia -->
+                <div class="service-icon-box">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M2 18h20"></path>
+                    <path d="M4 18a8 8 0 0 1 16 0"></path>
+                    <path d="M12 4v6"></path>
+                    <circle cx="12" cy="4" r="2"></circle>
+                  </svg>
+                </div>
+                <h3 class="service-title">Estudios Geotécnicos</h3>
+              </div>
+
+              <p class="service-desc">
+                Campañas de reconocimiento in situ, caracterización del terreno, sondeos mecánicos a rotación con recuperación continua de testigo y cálculo de cimentaciones directas y profundas.
+              </p>
+
+              <ul class="service-features">
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Ensayos de penetración estándar (SPT) y dinámica (DPSH).
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Ensayos de laboratorio (triaxiales, agresividad al hormigón).
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Estabilidad de taludes, pantallas de pilotes y micropilotes.
+                </li>
+              </ul>
+
+              <a href="#contacto" class="service-action-link" onclick="preselectService('geotecnia')">
+                Solicitar Campaña Geotécnica &rarr;
+              </a>
+            </div>
+          </article>
+
+          <!-- Servicio 3: Dirección de Obras Civiles -->
+          <article class="service-card" id="servicio-obras">
+            <div class="service-image-wrapper">
+              <img src="assets/service_obras.jpg" alt="Maquinaria pesada de excavación y dirección facultativa en traza de autovía" class="service-img" loading="lazy">
+              <span class="service-badge">Supervisión • Control Calidad</span>
+            </div>
+            <div class="service-body">
+              <div class="service-icon-heading">
+                <!-- Icono de Maquinaria de Excavación y Dirección Facultativa -->
+                <div class="service-icon-box">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="18" cy="18" r="3"></circle>
+                    <circle cx="6" cy="18" r="3"></circle>
+                    <path d="M3 18h3"></path>
+                    <path d="M9 18h6"></path>
+                    <path d="M21 18h-3"></path>
+                    <path d="M5 15V8a2 2 0 0 1 2-2h6l4 5v4"></path>
+                    <polyline points="14 11 14 6 10 6"></polyline>
+                  </svg>
+                </div>
+                <h3 class="service-title">Dirección de Obras Civiles</h3>
+              </div>
+
+              <p class="service-desc">
+                Supervisión técnica de proyectos viarios, hidráulicos y de urbanización. Verificación del plan de control de calidad, ensayos destructivos y no destructivos, y coordinación de seguridad y salud.
+              </p>
+
+              <ul class="service-features">
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Control de ejecución, replanteos topográficos y tolerancias.
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Certificaciones de obra, contradictorios y liquidación.
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  Coordinación de Seguridad y Salud (RD 1627/1997).
+                </li>
+              </ul>
+
+              <a href="#contacto" class="service-action-link" onclick="preselectService('direccion')">
+                Solicitar Dirección de Obra &rarr;
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN DE PROYECTOS TÉCNICOS -->
+    <section class="section" id="proyectos">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Cartera Técnica</span>
+          <h2 class="section-title">Infraestructuras y Proyectos de Referencia</h2>
+          <p class="section-subtitle">
+            Intervenciones de alta complejidad técnica ejecutadas con éxito por nuestro equipo de ingenieros de caminos y calculistas.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <div class="project-card" data-cat="estructuras">
+            <span class="project-category">Estructuras &amp; Puentes</span>
+            <h3 class="project-name">Viaducto del Ebro (Tramo II)</h3>
+            <p style="font-size: 0.9rem; color: var(--concrete-mid);">
+              Cálculo completo de viaducto continuo de hormigón pretensado con vano central de 110 metros y empuje progresivo.
+            </p>
+            <div class="project-specs">
+              <span class="spec-pill">Luz total: 460 m</span>
+              <span class="spec-pill">Cálculo No Lineal</span>
+              <span class="spec-pill">Hormigón HP-45</span>
+            </div>
+          </div>
+
+          <div class="project-card" data-cat="geotecnia">
+            <span class="project-category">Geotecnia &amp; Cimentaciones</span>
+            <h3 class="project-name">Ampliación de Terminal Portuaria</h3>
+            <p style="font-size: 0.9rem; color: var(--concrete-mid);">
+              Campaña de sondeos marítimos y dimensionamiento de pantalla de tablestacas y pilotes de gran diámetro para atraque.
+            </p>
+            <div class="project-specs">
+              <span class="spec-pill">32 Sondeos SPT</span>
+              <span class="spec-pill">Pilotes &Oslash; 1.500 mm</span>
+              <span class="spec-pill">CTE DB-SE-C</span>
+            </div>
+          </div>
+
+          <div class="project-card" data-cat="obras">
+            <span class="project-category">Dirección de Obras</span>
+            <h3 class="project-name">Variante Sur y Enlace Autovía A-66</h3>
+            <p style="font-size: 0.9rem; color: var(--concrete-mid);">
+              Supervisión de movimiento de tierras, drenaje longitudinal y transversal, pasos superiores y control de mezclas bituminosas.
+            </p>
+            <div class="project-specs">
+              <span class="spec-pill">Longitud: 12,8 km</span>
+              <span class="spec-pill">4 Pasos Superiores</span>
+              <span class="spec-pill">Control Calidad Total</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN DE NORMATIVA TÉCNICA Y ENLACES OFICIALES -->
+    <section class="section section-dark" id="normativa">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Marco Legal y Regulatorio</span>
+          <h2 class="section-title">Normativa Técnica Vigente</h2>
+          <p class="section-subtitle">
+            Garantizamos la máxima seguridad jurídica y técnica aplicando los códigos normativos oficiales de la edificación y obras públicas.
+          </p>
+        </div>
+
+        <div class="regulations-box">
+          <div class="regulations-grid">
+            
+            <!-- Enlace CTE -->
+            <div class="regulation-card">
+              <div class="reg-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+              </div>
+              <h3 class="reg-title">Código Técnico de la Edificación</h3>
+              <p class="reg-desc">
+                Documentos básicos de seguridad estructural (DB-SE), cimentaciones (DB-SE-C) y acciones en la edificación.
+              </p>
+              <a href="https://codigotecnico.org" target="_blank" rel="noopener noreferrer" class="reg-link">
+                Acceder a codigotecnico.org
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </div>
+
+            <!-- Enlace MITMA / Código Estructural -->
+            <div class="regulation-card">
+              <div class="reg-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+              </div>
+              <h3 class="reg-title">Código Estructural de Obras Civiles</h3>
+              <p class="reg-desc">
+                Marco reglamentario del Ministerio de Transportes y Movilidad Sostenible para estructuras de hormigón, acero y mixtas (RD 470/2021).
+              </p>
+              <a href="https://transportes.gob.es" target="_blank" rel="noopener noreferrer" class="reg-link">
+                Acceder a transportes.gob.es
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </div>
+
+            <!-- Enlace Repositorio GitHub Oficial -->
+            <div class="regulation-card" style="border-color: rgba(255, 107, 0, 0.4);">
+              <div class="reg-icon" style="color: var(--orange-safety);">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+              </div>
+              <h3 class="reg-title">Repositorio Git Oficial</h3>
+              <p class="reg-desc">
+                Control de versiones, especificaciones técnicas de la infraestructura WEAP y esquemas de los Virtual Hosts del proyecto.
+              </p>
+              <a href="https://CimientosGit.com" target="_blank" rel="noopener noreferrer" class="reg-link">
+                Acceder a CimientosGit.com
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMULARIO DE CONTACTO Y SOLICITUD DE PRESUPUESTOS (Requisito con recogida de datos y casilla para adjuntar planos PDF/Word) -->
+    <section class="section contact-section" id="contacto">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Contacto Técnico</span>
+          <h2 class="section-title">Solicitar Presupuesto de Consultoría</h2>
+          <p class="section-subtitle">
+            Envíe los detalles de su proyecto y adjunte los planos técnicos para recibir una valoración preliminar y propuesta de honorarios sin compromiso.
+          </p>
+        </div>
+
+        <div class="contact-layout">
+          <!-- Columna Izquierda: Información de Contacto Directo -->
+          <div class="contact-info-panel">
+            <div class="contact-feature-card">
+              <h3 style="font-size: 1.25rem; margin-bottom: 1.25rem; color: #fff;">Sede Central &amp; Delegaciones</h3>
+              
+              <div class="info-item">
+                <div class="info-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <div class="info-text">
+                  <h4>Oficina Técnica Principal</h4>
+                  <p>Paseo de la Castellana 210, Planta 8ª<br>28046 Madrid, España</p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                </div>
+                <div class="info-text">
+                  <h4>Línea Directa de Ingeniería</h4>
+                  <p>+34 91 823 45 67 (Centralita Técnica)<br>Horario: L-V 08:00 a 19:00 h</p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </div>
+                <div class="info-text">
+                  <h4>Correo de Visado y Presupuestos</h4>
+                  <p>proyectos@cimientospro.com<br>visados@cimientospro.com</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Caja Informativa sobre el Entorno Privado de la Intranet -->
+            <div class="contact-feature-card" style="border-left: 4px solid var(--blue-tech);">
+              <h4 style="color: var(--blue-tech-light); margin-bottom: 0.5rem; font-size: 1.05rem;">
+                ¿Es usted empleado o técnico colaborador?
+              </h4>
+              <p style="font-size: 0.88rem; color: var(--concrete-mid); margin-bottom: 1rem;">
+                El personal interno puede acceder a las herramientas de cálculo, Portainer y copias de seguridad a través de la Intranet Privada.
+              </p>
+              <a href="http://intranet.cimientospro.com" class="btn btn-intranet" style="width: 100%;">
+                Acceder a intranet.cimientospro.com &rarr;
+              </a>
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Formulario con Todos los Campos Obligatorios y Casilla para Adjuntar Planos en Formato PDF o Word -->
+          <div class="form-card">
+            <h3 style="font-size: 1.35rem; margin-bottom: 1.5rem; color: #fff;">Formulario de Solicitud de Presupuesto</h3>
+            
+            <form id="form-presupuesto" novalidate>
+              <div class="form-grid">
+                
+                <!-- Nombre y Apellidos / Empresa -->
+                <div class="form-group">
+                  <label for="nombre-solicitante" class="form-label">
+                    Nombre o Razón Social <span class="required-badge">*</span>
+                  </label>
+                  <input type="text" id="nombre-solicitante" name="nombre" class="form-input" placeholder="Ej. Construcciones Ibéricas S.A." required>
+                </div>
+
+                <!-- CIF / NIF / DNI -->
+                <div class="form-group">
+                  <label for="cif-solicitante" class="form-label">
+                    CIF / NIF / DNI <span class="required-badge">*</span>
+                  </label>
+                  <input type="text" id="cif-solicitante" name="cif" class="form-input" placeholder="Ej. A-12345678" required>
+                </div>
+
+                <!-- Correo Electrónico -->
+                <div class="form-group">
+                  <label for="email-solicitante" class="form-label">
+                    Correo Electrónico <span class="required-badge">*</span>
+                  </label>
+                  <input type="email" id="email-solicitante" name="email" class="form-input" placeholder="ingenieria@empresa.com" required>
+                </div>
+
+                <!-- Teléfono de Contacto -->
+                <div class="form-group">
+                  <label for="telefono-solicitante" class="form-label">
+                    Teléfono de Contacto <span class="required-badge">*</span>
+                  </label>
+                  <input type="tel" id="telefono-solicitante" name="telefono" class="form-input" placeholder="+34 600 000 000" required>
+                </div>
+
+                <!-- Especialidad de Ingeniería Solicitada -->
+                <div class="form-group">
+                  <label for="tipo-servicio" class="form-label">
+                    Especialidad Requerida <span class="required-badge">*</span>
+                  </label>
+                  <select id="tipo-servicio" name="servicio" class="form-select" required>
+                    <option value="" disabled selected>Seleccione la especialidad técnica...</option>
+                    <option value="calculo">Cálculo de Estructuras (Hormigón / Acero)</option>
+                    <option value="geotecnia">Estudio Geotécnico del Terreno</option>
+                    <option value="direccion">Dirección y Supervisión de Obra Civil</option>
+                    <option value="integral">Consultoría Integral (Estructuras + Geotecnia)</option>
+                  </select>
+                </div>
+
+                <!-- Localización de la Obra -->
+                <div class="form-group">
+                  <label for="localizacion-obra" class="form-label">
+                    Localización de la Obra <span class="required-badge">*</span>
+                  </label>
+                  <input type="text" id="localizacion-obra" name="localizacion" class="form-input" placeholder="Municipio, Provincia" required>
+                </div>
+
+                <!-- Plazo Estimado de Ejecución -->
+                <div class="form-group-full">
+                  <label for="plazo-obra" class="form-label">
+                    Plazo Deseado para la Memoria / Proyecto <span class="required-badge">*</span>
+                  </label>
+                  <select id="plazo-obra" name="plazo" class="form-select" required>
+                    <option value="" disabled selected>Seleccione el plazo previsto...</option>
+                    <option value="urgente">Urgente (&lt; 15 días laborables)</option>
+                    <option value="estandar">Estándar (15 a 30 días laborables)</option>
+                    <option value="planificado">Planificación a medio plazo (&gt; 1 mes)</option>
+                  </select>
+                </div>
+
+                <!-- Descripción Técnica de la Obra -->
+                <div class="form-group-full">
+                  <label for="descripcion-proyecto" class="form-label">
+                    Descripción Técnica del Proyecto <span class="required-badge">*</span>
+                  </label>
+                  <textarea id="descripcion-proyecto" name="descripcion" class="form-textarea" placeholder="Indique características: tipología estructural, número de plantas o vanos, tipo de cimentación prevista, cargas estimadas y normativa a aplicar..." required></textarea>
+                </div>
+
+                <!-- Casilla para Adjuntar Planos en formato PDF o Word (REQUISITO EXPLÍCITO) -->
+                <div class="form-group-full">
+                  <label class="form-label">
+                    Adjuntar Planos Técnicos o Croquis <span class="required-badge">* (Obligatorio: Formato PDF o Word)</span>
+                  </label>
+
+                  <div class="file-upload-zone" id="upload-dropzone">
+                    <input type="file" id="archivo-planos" name="archivo_planos" class="file-input-hidden" accept=".pdf,.doc,.docx" required aria-label="Adjuntar planos en formato PDF o Word">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="17 8 12 3 7 8"></polyline>
+                      <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <div class="upload-title">Haga clic o arrastre aquí los planos del proyecto</div>
+                    <div class="upload-hint">Formatos técnicos aceptados: <strong>Documentos PDF (.pdf) o Microsoft Word (.doc, .docx)</strong></div>
+                    <div class="formats-tag">Formatos admitidos: PDF / DOC / DOCX (Máx. 50 MB)</div>
+                  </div>
+
+                  <!-- Vista previa del archivo seleccionado -->
+                  <div class="selected-file-display" id="selected-file-display">
+                    <div class="file-info">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--blue-tech-light);">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                      </svg>
+                      <span id="selected-file-name" style="font-weight: 500;"></span>
+                    </div>
+                    <button type="button" class="remove-file-btn" id="remove-file-btn" title="Quitar archivo">
+                      &times; Quitar
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Casilla de Aceptación Legal y Protección de Datos -->
+                <div class="form-group-full">
+                  <div class="checkbox-group">
+                    <input type="checkbox" id="rgpd-consent" name="rgpd" class="checkbox-custom" required>
+                    <label for="rgpd-consent" class="checkbox-label">
+                      Acepto el tratamiento de mis datos técnicos y de contacto de acuerdo con el RGPD y la política de privacidad de CimientosPro para la elaboración de la oferta técnica y el visado colegial pertinente. <span class="required-badge">*</span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Botón de Envío -->
+                <div class="form-group-full" style="margin-top: 1rem;">
+                  <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.1rem; font-size: 1.05rem;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <line x1="22" y1="2" x2="11" y2="13"></line>
+                      <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                    Enviar Solicitud de Presupuesto Técnico
+                  </button>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL DE CONFIRMACIÓN DE ENVÍO -->
+  <div class="modal-backdrop" id="modal-confirmacion" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <div class="modal-icon-success">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h3 id="modal-title" style="font-size: 1.5rem; margin-bottom: 0.5rem; color: #fff;">¡Solicitud Registrada con Éxito!</h3>
+      <p style="font-size: 0.95rem; color: var(--concrete-mid);">
+        Hemos recibido correctamente los datos técnicos y los planos adjuntos en nuestro servidor. Nuestro equipo de ingenieros de cálculo analizará la documentación.
+      </p>
+
+      <div class="modal-expediente">
+        Expediente Técnico: <strong id="numero-expediente">EXP-2026-CP-0000</strong>
+      </div>
+
+      <p style="font-size: 0.85rem; color: var(--concrete-mid); margin-bottom: 1.5rem;">
+        Recibirá un correo con la propuesta de honorarios y plazo en un máximo de 24 a 48 horas laborables.
+      </p>
+
+      <button type="button" class="btn btn-primary" id="btn-close-modal" style="width: 100%;">
+        Aceptar y Volver al Sitio
+      </button>
+    </div>
+  </div>
+
+  <!-- PIE DE PÁGINA (FOOTER) -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom: 1rem;">
+            <svg class="logo-icon-svg" viewBox="0 0 100 100" fill="none" style="width: 36px; height: 36px;">
+              <polygon points="50,6 94,30 94,72 50,96 6,72 6,30" fill="#181d24" stroke="#ff6b00" stroke-width="4"/>
+              <path d="M22 34 L78 34 L78 44 L56 44 L56 78 L44 78 L44 44 L22 44 Z" fill="#0284c7"/>
+            </svg>
+            <div class="brand-text">
+              <span class="brand-title" style="font-size: 1.2rem;">CIMIENTOS<span>PRO</span></span>
+            </div>
+          </div>
+          <p style="font-size: 0.88rem; line-height: 1.6; color: var(--concrete-mid);">
+            Consultoría líder en ingeniería estructural, geotecnia y dirección de obras. Rigor técnico y compromiso con la seguridad en cada infraestructura.
+          </p>
+          <div style="margin-top: 1rem;">
+            <span class="spec-pill" style="border: 1px solid var(--border-steel); color: #cbd5e1;">ISO 9001:2015</span>
+            <span class="spec-pill" style="border: 1px solid var(--border-steel); color: #cbd5e1;">ISO 14001</span>
+            <span class="spec-pill" style="border: 1px solid var(--border-steel); color: #cbd5e1;">Colegiación CICCP</span>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Especialidades</h5>
+          <ul class="footer-links">
+            <li><a href="#servicios">Cálculo de Estructuras</a></li>
+            <li><a href="#servicios">Estudios Geotécnicos</a></li>
+            <li><a href="#servicios">Dirección de Obras</a></li>
+            <li><a href="#servicios">Modelado BIM &amp; MEF</a></li>
+            <li><a href="#servicios">Ensayos de Suelos</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Normativa y Enlaces</h5>
+          <ul class="footer-links">
+            <li><a href="https://codigotecnico.org" target="_blank" rel="noopener noreferrer">Código Técnico (CTE)</a></li>
+            <li><a href="https://transportes.gob.es" target="_blank" rel="noopener noreferrer">Código Estructural MITMA</a></li>
+            <li><a href="https://CimientosGit.com" target="_blank" rel="noopener noreferrer">Repositorio CimientosGit</a></li>
+            <li><a href="http://intranet.cimientospro.com">Acceso Intranet</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Interconexión de Red</h5>
+          <p style="font-size: 0.85rem; color: var(--concrete-mid); margin-bottom: 0.75rem;">
+            Portal técnico restringido para empleados y estaciones de cálculo.
+          </p>
+          <a href="http://intranet.cimientospro.com" class="btn btn-intranet" style="width: 100%; font-size: 0.85rem;">
+            🔒 Entrar a intranet.cimientospro.com
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 CimientosPro Consultoría &amp; Ingeniería Civil S.L. Todos los derechos reservados.
+        </div>
+        <div style="display: flex; gap: 1.5rem;">
+          <a href="#header">Subir al Inicio &uarr;</a>
+          <a href="http://intranet.cimientospro.com">Intranet Interna</a>
+          <a href="https://CimientosGit.com" target="_blank" rel="noopener noreferrer">GitHub Proyecto</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    function preselectService(val) {
+      const select = document.getElementById('tipo-servicio');
+      if (select) {
+        select.value = val;
+      }
+    }
+  </script>
+</body>
+</html>
